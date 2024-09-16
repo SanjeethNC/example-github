@@ -20,6 +20,11 @@ class TestTranslationFunction(unittest.TestCase):
     def test_translate_to_romanian(self):
         # Test translation to Romanian using the Local-Based model
         result = translate("Hello", "Romanian", self.model_type)
+        self.assertTrue(result in ["Salut", "Bună ziua"])
+
+    def test_translate_buna_ziua(self):
+        # Test translation to Romanian phrase "Good day" using the Local-Based model
+        result = translate("Good day", "Romanian", self.model_type)
         self.assertEqual(result, "Bună ziua")
 
     def test_unsupported_language(self):
