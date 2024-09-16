@@ -1,0 +1,18 @@
+name: Notify Discord on Push
+
+on:
+  push:
+    branches:
+      - main  # Change this to the branch you want to trigger notifications on
+
+jobs:
+  notify-discord:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Send Discord Notification
+      run: |
+        curl -H "Content-Type: application/json" \
+        -d "{\"username\": \"GitHub Bot\", \"content\": \"🔔 **New Push by ${{ github.actor }}** on branch **${{ github.ref_name }}** in repository **${{ github.repository }}**. [View Commit(s)](${{
+            github.event.compare }})\"}" \
+        ${{ secrets.DISCORD_WEBHOOK_URL }}
