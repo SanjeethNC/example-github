@@ -3,21 +3,29 @@ from app import translate
 
 class TestTranslationFunction(unittest.TestCase):
     
+    def setUp(self):
+        # Default model type to Local-Based for testing purposes
+        self.model_type = "Local-Based"
+
     def test_translate_to_french(self):
-        result = translate("Hello", "French")
-        self.assertIn("Bonjour", result, "Translation to French failed")
-    
+        # Test translation to French using the Local-Based model
+        result = translate("Hello", "French", self.model_type)
+        self.assertEqual(result, "Bonjour")
+
     def test_translate_to_german(self):
-        result = translate("Hello", "German")
-        self.assertIn("Hallo", result, "Translation to German failed")
-    
+        # Test translation to German using the Local-Based model
+        result = translate("Hello", "German", self.model_type)
+        self.assertEqual(result, "Hallo")
+
     def test_translate_to_romanian(self):
-        result = translate("Hello", "Romanian")
-        self.assertTrue("Bună" in result or "Salut" in result, "Translation to Romanian failed")
+        # Test translation to Romanian using the Local-Based model
+        result = translate("Hello", "Romanian", self.model_type)
+        self.assertEqual(result, "Bună ziua")
 
     def test_unsupported_language(self):
-        result = translate("Hello", "Spanish")
-        self.assertEqual(result, "Sorry, this language is not supported.", "Unsupported language test failed")
+        # Test translation to unsupported language using the Local-Based model
+        result = translate("Hello", "Spanish", self.model_type)
+        self.assertEqual(result, "Sorry, this language is not supported.")
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()
