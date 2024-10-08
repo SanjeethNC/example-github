@@ -6,7 +6,6 @@ from transformers import pipeline
 # Hugging Face API URL
 API_URL = "https://api-inference.huggingface.co/models/google-t5/t5-base"
 
-print('hi')
 
 # Get the token from environment variable
 API_TOKEN = os.getenv("HF_API_TOKEN")
